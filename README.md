@@ -1,4 +1,4 @@
-# <center>用于中文命名实体识别的递归神经网络</center>
+# <center>用于中文命名实体识别的递归神经网络（pytorch）</center>
 命名实体识别作为序列标注类的典型任务，其使用场景特别广泛。本项目基于PyTorch搭建BiLSTM+CRF模型，实现中文命名识别任务，代码已提交至Github（ GitHub： https://github.com/CaoYuGang/ChineseNER_BiLSTM ）。
 ## 模型
 该模型是具有CRF层的双区域LSTM神经网络。汉字序列被投影到密集的向量序列中，并带有多余的特征作为循环层的输入，这里我们使用一个代表词边界特征的热向量进行说明。循环层是双向LSTM层，前向和后向向量的输出被汇总并投影为每个标签的得分。CRF层用于克服标签偏斜问题。
@@ -21,6 +21,10 @@ CHINESENER_BILSTM
 ├─model
 │      bi-lstm-crf-61-15000.pkl
 │      word_to_ix.json
+|
+├─data
+│      train_data.txt
+|
 
 ps:
 config.py: 训练和运行测试时的相关配置，训练时根据自己的数据集的情况对配置文件进行修改，修改部分包括模型保存训练次数间隔、训练循环次数等
@@ -29,6 +33,8 @@ train.py：训练模型的相关配置
 model：
     bi-lstm-crf-1-5000.pkl： 训练完成的案例模型(测试模型，非最终模型)
     word_to_ix.json： 训练时生成的文字集
+data：
+    train_data.txt训练数据集，可修改config.py中的TRAIN_FILE_PATH文件地址修改训练的数据集
 ```
 
 ## 数据集说明
